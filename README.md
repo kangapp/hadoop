@@ -31,6 +31,27 @@
 基于YARN，用于并行处理大数据集的系统
 - Others
 
+### Hadoop部署
+
+#### 前置条件
+- java
+- ssh
+
+#### 单节点Hadoop集群
+
+##### 安装Hadoop
+```
+CDH版本下载：http://archive.cloudera.com/cdh5/cdh/5/   hadoop-2.6.0-cdh5.7.0.tar.gz  
+```
+
+##### 配置文件
+- hadoop-env.sh
+> export JAVA_HOME=${JAVA_HOME}
+
+- core-site.xml  
+| name      | value     | 解释             |
+| --------- | --------- | --------------- |
+| fs.defaultFS | hdfs://localhost:9000 | |
 ### Hadoop Distributeed File System  
 
 Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html  
