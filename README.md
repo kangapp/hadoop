@@ -60,6 +60,14 @@ CDH版本下载：http://archive.cloudera.com/cdh5/cdh/5/   hadoop-2.6.0-cdh5.7.
 | name      | value     | 	description             |
 | --------- | --------- | --------------- |
 | dfs.replication | 1 | 缺省的block副本系数 |
+
+##### 启动HDFS
+
+> 第一次启动需格式化文件系统： $ bin/hdfs namenode -format  
+启动NameNode和DataNode：  $ sbin/start-dfs.sh  
+停止NameNode和DataNode：  $ sbin/stop-dfs.sh  
+jps查看启动进程
+
 ### Hadoop Distributeed File System  
 
 Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html  
@@ -82,3 +90,8 @@ Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-project-dist/ha
 - 存储用户的文件对应的数据块（Block）
 - 定期向NameNode发送心跳信息，汇报本身及其所有的Block信息、健康状况
 - 根据NameNode的指令执行Block的创建、删除和复制
+
+#### Hadoop命令行操作
+
+| 操作       | 功能          |
+| ----------| ------------- |
