@@ -49,6 +49,7 @@ CDH版本下载：http://archive.cloudera.com/cdh5/cdh/5/   hadoop-2.6.0-cdh5.7.
 > export JAVA_HOME=${JAVA_HOME}
 
 - core-site.xml  
+
 | name      | value     | 解释             |
 | --------- | --------- | --------------- |
 | fs.defaultFS | hdfs://localhost:9000 | |
