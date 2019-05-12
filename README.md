@@ -50,9 +50,16 @@ CDH版本下载：http://archive.cloudera.com/cdh5/cdh/5/   hadoop-2.6.0-cdh5.7.
 
 - core-site.xml  
 
-| name      | value     | 解释             |
+| name      | value     | 	description             |
 | --------- | --------- | --------------- |
-| fs.defaultFS | hdfs://localhost:9000 | |
+| fs.defaultFS | hdfs://localhost:9000 | 文件系统主机和端口 |
+| hadoop.tmp.dir | /tmp/hadoop-${user.name} | 数据存储临时文件夹 |
+
+- hdfs-site.xml  
+
+| name      | value     | 	description             |
+| --------- | --------- | --------------- |
+| dfs.replication | 1 | 缺省的block副本系数 |
 ### Hadoop Distributeed File System  
 
 Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html  
