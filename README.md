@@ -91,7 +91,4 @@ Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-project-dist/ha
 - 定期向NameNode发送心跳信息，汇报本身及其所有的Block信息、健康状况
 - 根据NameNode的指令执行Block的创建、删除和复制
 
-#### Hadoop命令行操作
-
-| 操作       | 功能          |
-| ----------| ------------- |
+#### [Hadoop命令行操作](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html)
