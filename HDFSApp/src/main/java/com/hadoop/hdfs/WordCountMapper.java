@@ -1,4 +1,4 @@
-package com.hadoop;
+package com.hadoop.hdfs;
 
 /**
  * 词频统计实现类

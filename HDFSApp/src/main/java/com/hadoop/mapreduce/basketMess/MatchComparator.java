@@ -1,6 +1,6 @@
 package com.hadoop.mapreduce.basketMess;
 
-import com.hadoop.domain.MatchKey;
+import com.hadoop.mapreduce.basketMess.domain.MatchKey;
 import org.apache.hadoop.io.WritableComparator;
 
 public class MatchComparator extends WritableComparator {
@@ -17,6 +17,9 @@ public class MatchComparator extends WritableComparator {
         String game1 = m1.getGameId();
         String game2 = m2.getGameId();
 
-        return game1.compareTo(game2);
+        String player1 = m1.getPlayerId();
+        String player2 = m2.getPlayerId();
+
+        return player1.compareTo(player2);
     }
 }

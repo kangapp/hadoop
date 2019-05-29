@@ -13,22 +13,19 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
  *
  * Driver：配置Mapper、Reducer的相关属性
  *
- * 提交到本地运行，开发过程使用
+ * 使用本地文件进行统计，然后统计结果输出到本地路径
  */
-public class WordCountApp {
+public class WordCountLocalApp {
 
     public static void main(String[] args) throws Exception{
 
-        System.setProperty("HADOOP_USER_NAME", "liufukang");
-
         Configuration configuration = new Configuration();
-        configuration.set("fs.defaultFS","hdfs://localhost:9000");
 
         //创建一个job
         Job job = Job.getInstance(configuration);
 
         //设置Job对应的参数：主类
-        job.setJarByClass(WordCountApp.class);
+        job.setJarByClass(WordCountLocalApp.class);
 
         //设置Job对应的参数：设置自定义的Mapper和Reducer
         job.setMapperClass(WordCountMapper.class);
@@ -43,8 +40,8 @@ public class WordCountApp {
         job.setOutputValueClass(IntWritable.class);
 
         //设置作业的输入和输出的路径
-        FileInputFormat.setInputPaths(job, new Path("/wordcount/input"));
-        FileOutputFormat.setOutputPath(job, new Path("/wordcount/output"));
+        FileInputFormat.setInputPaths(job, new Path("input"));
+        FileOutputFormat.setOutputPath(job, new Path("output"));
 
         //提交job
         boolean result = job.waitForCompletion(true);

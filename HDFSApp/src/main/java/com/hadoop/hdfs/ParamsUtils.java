@@ -1,4 +1,4 @@
-package com.hadoop;
+package com.hadoop.hdfs;
 
 
 import java.io.IOException;

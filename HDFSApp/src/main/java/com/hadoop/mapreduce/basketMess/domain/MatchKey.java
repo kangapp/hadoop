@@ -17,6 +17,10 @@ public class MatchKey implements WritableComparable<MatchKey> {
     private String playerName;
     private String matchup;
 
+    public MatchKey() {
+        super();
+    }
+
     public MatchKey(String gameId, String playerId, String playerName, String matchup) {
         this.gameId = gameId;
         this.playerId = playerId;
@@ -63,7 +67,7 @@ public class MatchKey implements WritableComparable<MatchKey> {
 
     @Override
     public int compareTo(MatchKey o) {
-        return getGameId().compareTo(o.getGameId());
+        return (getGameId()+getPlayerId()).compareTo(o.getGameId()+o.getPlayerId());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.hadoop;
+package com.hadoop.hdfs;
 
 import java.util.HashMap;
 import java.util.Map;

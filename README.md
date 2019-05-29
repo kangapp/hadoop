@@ -92,3 +92,14 @@ Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-project-dist/ha
 - 根据NameNode的指令执行Block的创建、删除和复制
 
 #### [Hadoop命令行操作](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html)
+
+### MapReduce
+
+Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html
+
+#### 官网介绍
+
+*`in-parallerl`* 
+> Hadoop MapReduce is a software framework for easily writing applications which process vast amounts of data (multi-terabyte data-sets) in-parallel on large clusters (thousands of nodes) of commodity hardware in a reliable, fault-tolerant manner.
+
+![MapReduce执行过程](images/MapReduce.png)  

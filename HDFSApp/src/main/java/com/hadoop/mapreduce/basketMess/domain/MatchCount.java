@@ -1,4 +1,4 @@
-package com.hadoop.domain;
+package com.hadoop.mapreduce.basketMess.domain;
 
 import org.apache.hadoop.io.Writable;
 
@@ -10,6 +10,10 @@ public class MatchCount implements Writable {
 
     private int shotNum;
     private int score;
+
+    public MatchCount() {
+        super();
+    }
 
     public MatchCount(int shotNum, int score) {
         this.shotNum = shotNum;
