@@ -102,4 +102,82 @@ Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-mapreduce-clien
 *`in-parallerl`* 
 > Hadoop MapReduce is a software framework for easily writing applications which process vast amounts of data (multi-terabyte data-sets) in-parallel on large clusters (thousands of nodes) of commodity hardware in a reliable, fault-tolerant manner.
 
+#### MapReduce执行流程图
+
 ![MapReduce执行过程](images/MapReduce.png)  
+
+#### 核心概念
+
+##### Split
+> MapReduce作业处理的数据块，是MapReduce中最小的计算单元。和HDFS中的block默认是一一对应的。
+
+##### InputFormat
+> 将输入数据进行分片(split)
+
+##### OutputFormat
+> 将job的内容输出到文件系统
+
+##### Mapper
+> 三个主要的方法，处理作业输入数据
+```java
+//任务开始之前执行一次
+protected void setup(Context context) throws IOException, InterruptedException {
+    // NOTHING
+}
+
+//输入块中的每个键值对都会执行一次
+protected void map(KEYIN key, VALUEIN value, Context context) throws IOException,InterruptedException {
+    context.write((KEYOUT) key, (VALUEOUT) value);
+}
+
+//任务结束时执行一次
+protected void cleanup(Context context) throws IOException, InterruptedException {
+    // NOTHING
+}
+```
+
+##### Reducer
+> 三个主要的方法，处理map的输出数据
+```java
+//任务开始之前执行一次
+protected void setup(Context context) throws IOException, InterruptedException {
+    // NOTHING
+}
+
+//map输出的每一个key都会执行一次
+protected void reduce(KEYIN key, Iterable<VALUEIN> values, Context context) throws IOException,InterruptedException {
+    for(VALUEIN value: values) {
+      context.write((KEYOUT) key, (VALUEOUT) value);
+    }
+}
+//任务结束时执行一次
+protected void cleanup(Context context) throws IOException, InterruptedException {
+    // NOTHING
+}
+```
+
+##### Combiner
+> 本质是Reducer，即在Map阶段执行Reducer方法，使用有限制条件(例如求平均值不适用)
+
+##### Partitioner
+> 接口，须实现分区规则，即key值和分区的映射关系
+
+```java
+//numPartitions为分区数量，即reduce的数量
+//通过job.setNumReduceTasks(n)设置
+public abstract int getPartition(KEY key, VALUE value, int numPartitions);
+```
+
+##### Counters
+> 全局计数器，每个计数器可以是任何枚举类型，可以在map和reduce中使用
+```java
+
+//定义计数器
+static enum CountersEnum {INPUT_WORDS}
+
+// 获取指定计数器
+Counter counter = context.getCounter(CountersEnum.class.getName(),CountersEnum.OUTPUT_WORDS.toString());
+
+//执行计数功能
+counter.increment(1);
+```
