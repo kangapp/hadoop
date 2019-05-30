@@ -67,7 +67,12 @@ public class MatchKey implements WritableComparable<MatchKey> {
 
     @Override
     public int compareTo(MatchKey o) {
-        return 0;
+        return 1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 
     @Override
