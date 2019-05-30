@@ -19,18 +19,24 @@ public class BasketReducer extends Reducer<MatchKey, MatchData, Text, MatchCount
 
         int shotNum = 0;
         int score = 0;
-        List<MatchData> list = new ArrayList<MatchData>();
+        int shot_two = 0;
+        int shot_three = 0;
         for(MatchData item : values) {
             String ptsType = item.getPtsType();
             String shotResult = item.getShotResult();
             shotNum ++;
             if ("made".equals(shotResult)) {
                 score += Integer.parseInt(ptsType);
-                list.add(new MatchData(item));
+                if(ptsType.equals("2")){
+                    shot_two ++;
+                }
+                else {
+                    shot_three ++;
+                }
             }
             Counter counter = context.getCounter(CountersEnum.class.getName(),CountersEnum.OUTPUT_WORDS.toString());
             counter.increment(1);
         }
-        context.write(new Text(key.getPlayerName()), new MatchCount(shotNum, score));
+        context.write(new Text(key.toString()), new MatchCount(shot_two, shot_three, shotNum, score));
     }
 }

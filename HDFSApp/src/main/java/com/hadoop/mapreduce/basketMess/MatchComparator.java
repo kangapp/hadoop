@@ -1,7 +1,9 @@
 package com.hadoop.mapreduce.basketMess;
 
 import com.hadoop.mapreduce.basketMess.domain.MatchKey;
+import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
+
 
 public class MatchComparator extends WritableComparator {
 
@@ -10,16 +12,20 @@ public class MatchComparator extends WritableComparator {
     }
 
     @Override
-    public int compare(Object a, Object b) {
-        MatchKey m1 = (MatchKey) a;
-        MatchKey m2 = (MatchKey) b;
+    public int compare(WritableComparable a, WritableComparable b) {
+        MatchKey key1 = (MatchKey) a;
+        MatchKey key2 = (MatchKey) b;
 
-        String game1 = m1.getGameId();
-        String game2 = m2.getGameId();
+        long game1 = key1.getGameId();
+        long game2 = key2.getGameId();
 
-        String player1 = m1.getPlayerId();
-        String player2 = m2.getPlayerId();
+        long play1 = key1.getPlayerId();
+        long play2 = key2.getPlayerId();
 
-        return player1.compareTo(player2);
+        int ret = game1 == game2 ? 0 : (game1 > game2 ? 1 : -1);
+        if (ret == 0) {
+            ret = play1 == play2 ? 0 : (play1 > play2 ? 1 :-1);
+        }
+        return ret;
     }
 }

@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 public class MatchKey implements WritableComparable<MatchKey> {
 
-    private String gameId;
-    private String playerId;
+    private long gameId;
+    private long playerId;
     private String playerName;
     private String matchup;
 
@@ -21,26 +21,26 @@ public class MatchKey implements WritableComparable<MatchKey> {
         super();
     }
 
-    public MatchKey(String gameId, String playerId, String playerName, String matchup) {
+    public MatchKey(long gameId, long playerId, String playerName, String matchup) {
         this.gameId = gameId;
         this.playerId = playerId;
         this.playerName = playerName;
         this.matchup = matchup;
     }
 
-    public String getGameId() {
+    public long getGameId() {
         return gameId;
     }
 
-    public void setGameId(String gameId) {
+    public void setGameId(long gameId) {
         this.gameId = gameId;
     }
 
-    public String getPlayerId() {
+    public long getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(String playerId) {
+    public void setPlayerId(long playerId) {
         this.playerId = playerId;
     }
 
@@ -62,26 +62,31 @@ public class MatchKey implements WritableComparable<MatchKey> {
 
     @Override
     public String toString() {
-        return "<"+playerName+"\t"+matchup+">";
+        return "<"+playerName+"\t"+matchup+"\t"+">";
     }
 
     @Override
     public int compareTo(MatchKey o) {
-        return (getGameId()+getPlayerId()).compareTo(o.getGameId()+o.getPlayerId());
+        return 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(this.gameId) * 11 + Long.hashCode(this.playerId);
     }
 
     @Override
     public void write(DataOutput dataOutput) throws IOException {
-        dataOutput.writeUTF(gameId);
-        dataOutput.writeUTF(playerId);
+        dataOutput.writeLong(gameId);
+        dataOutput.writeLong(playerId);
         dataOutput.writeUTF(playerName);
         dataOutput.writeUTF(matchup);
     }
 
     @Override
     public void readFields(DataInput dataInput) throws IOException {
-        this.gameId = dataInput.readUTF();
-        this.playerId = dataInput.readUTF();
+        this.gameId = dataInput.readLong();
+        this.playerId = dataInput.readLong();
         this.playerName = dataInput.readUTF();
         this.matchup = dataInput.readUTF();
     }

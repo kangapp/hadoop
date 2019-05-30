@@ -5,9 +5,9 @@ import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
 
 
-public class MatchComparator extends WritableComparator {
+public class MatchSortComparator extends WritableComparator {
 
-    protected MatchComparator() {
+    protected MatchSortComparator() {
         super(MatchKey.class, true);
     }
 
@@ -16,12 +16,16 @@ public class MatchComparator extends WritableComparator {
         MatchKey key1 = (MatchKey) a;
         MatchKey key2 = (MatchKey) b;
 
-        String game1 = key1.getGameId();
-        String game2 = key2.getPlayerId();
+        long game1 = key1.getGameId();
+        long game2 = key2.getGameId();
 
-        String play1 = key1.getPlayerId();
-        String play2 = key2.getPlayerId();
+        long play1 = key1.getPlayerId();
+        long play2 = key2.getPlayerId();
 
-        return (game1+play1).compareTo(game2+play2);
+        int ret = play1 == play2 ? 0 : (play1 > play2 ? 1 :-1);
+        if (ret == 0) {
+            ret = game1 == game2 ? 0 : (game1 > game2 ? 1 : -1);
+        }
+        return ret;
     }
 }
