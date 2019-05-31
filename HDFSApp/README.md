@@ -29,7 +29,9 @@
 
 ## 投篮统计实战
 
-☞  [项目传送门](https://github.com/kangapp/hadoop/blob/master/HDFSApp/src/main/java/com/hadoop/mapreduce/basketMess/BasketApp.java)
+☞  [项目传送门](https://github.com/kangapp/hadoop/blob/master/HDFSApp/src/main/java/com/hadoop/mapreduce/basketMess/BasketApp.java)  
+
+[数据地址](https://www.kaggle.com/dansbecker/nba-shot-logs)  
 
 ### 需求（后续增加）
 
