@@ -23,11 +23,13 @@ public class BasketMapper extends Mapper<LongWritable, Text, MatchKey, MatchData
 
     static enum CountersEnum {INPUT_WORDS}
     private Set<String> patternToChose = new HashSet<String>();
+    boolean chooseFlag = false;
 
     @Override
     protected void setup(Context context) throws IOException, InterruptedException {
         Configuration conf = context.getConfiguration();
-        if(conf.getBoolean("basketApp.chose.state",false)){
+        chooseFlag = conf.getBoolean("basketApp.chose.state",false);
+        if(chooseFlag){
             URI[] patternURLs = Job.getInstance(conf).getCacheFiles();
             for (URI patternURL : patternURLs) {
                 Path patternPath = new Path(patternURL.getPath());
@@ -62,12 +64,18 @@ public class BasketMapper extends Mapper<LongWritable, Text, MatchKey, MatchData
         String ptsType = values[13];
         String shotResult = values[14];
 
-        for (String pattern : patternToChose){
-            if (playerName.contains(pattern)){
-                context.write(new MatchKey(Long.parseLong(gameId), Long.parseLong(playId), playerName, matchup),
-                        new MatchData(ptsType, shotResult));
+        if(chooseFlag){
+            for (String pattern : patternToChose){
+                if (playerName.contains(pattern)){
+                    context.write(new MatchKey(Long.parseLong(gameId), Long.parseLong(playId), playerName, matchup),
+                            new MatchData(ptsType, shotResult));
+                }
             }
+        } else {
+            context.write(new MatchKey(Long.parseLong(gameId), Long.parseLong(playId), playerName, matchup),
+                    new MatchData(ptsType, shotResult));
         }
+
         Counter counter = context.getCounter(CountersEnum.class.getName(),CountersEnum.INPUT_WORDS.toString());
         counter.increment(1);
     }

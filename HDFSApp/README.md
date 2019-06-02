@@ -103,7 +103,8 @@ private void parseSkipFile(String fileName) {
 
 #### 自定义数据类型
 
-//TODO
+>实现WritableComparable接口，带排序方法  
+实现Writable方法，无排序
 
 #### 二次排序
 
@@ -112,7 +113,8 @@ private void parseSkipFile(String fileName) {
 >当分区数大于1时会执行分区方法，默认是HashPartitioner,根据key的hashcode方法进行分区  
 job.setPartitionerClass(MatchPartitioner.class);
 
->如果没有指定排序方法，会使用key对用compareTo方法  
+>如果没有指定排序方法，会使用key的compareTo方法  
 job.setSortComparatorClass(MatchSortComparator.class);
 
->
+>在排序的基础上调用分组方法，同一组的数据会分到同一个reduce处理  
+job.setGroupingComparatorClass(MatchComparator.class);
