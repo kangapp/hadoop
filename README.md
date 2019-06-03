@@ -215,3 +215,4 @@ Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yar
 
 >AM的任务是向RM申请资源、和NM协作执行和监视任务
 
+## [项目实战](https://github.com/kangapp/hadoop/tree/master/HDFSApp)
