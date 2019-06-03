@@ -183,3 +183,35 @@ counter.increment(1);
 ```
 
 ### Yarn
+
+Hadoop官网介绍：http://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/YARN.html
+
+#### 官网介绍
+
+*`resource management`*  *`job scheduling`* 
+> The fundamental idea of YARN is to split up the functionalities of resource management and job scheduling/monitoring into separate daemons. The idea is to have a global ResourceManager (RM) and per-application ApplicationMaster (AM). An application is either a single job or a DAG of jobs.
+
+#### Yarn架构图
+
+![Yarn架构](images/Yarn.png) 
+
+#### 核心概念
+
+##### ResourceManager and the NodeManager
+
+>RM负责系统中所有应用资源的管理，NM是RM在每台机器上的代理，负责该机器容器（containers）的管理，监视并且向RM汇报容器资源（cpu、内存、磁盘、网络）使用情况。  
+
+>RM主要由调度器（Scheduler）和应用管理器（ApplicationsManager）两部分组成  
+
+- 调度器
+
+>调度器负责给各种正在运行的和有相似的约束如容量、队列等的应用分配资源。调度器只是一个纯粹的调度器而不负责应用状态的监视和追踪。并且它也不负责重启由于程序故障和硬件故障导致失败的任务。调度器根据应用的资源需求来执行它的调度功能，主要是基于资源“container”的抽象概念，包含内存、cpu、硬盘和网络等元素。主要有两种类型：CapacityScheduler和FairScheduler.
+
+- 应用管理器
+
+>应用管理器负责接收作业的提交，选择第一个容器来运行AM并提供AM容器失败的重启服务。AM负责向调度器申请合适的资源容器，追踪和监视他们的状态
+
+##### ApplicationMaster
+
+>AM的任务是向RM申请资源、和NM协作执行和监视任务
+
