@@ -1,5 +1,48 @@
 # hadoop
 
+
+目录
+=================
+   * [hadoop]()
+      * [大数据概述]()
+         * [技术概念]()
+      * [初识Hadoop]()
+         * [Hadoop概述]()
+            * [官方介绍]()
+            * [模块]()
+         * [Hadoop部署]()
+            * [前置条件]()
+            * [单节点Hadoop集群]()
+               * [安装Hadoop]()
+               * [配置文件]()
+               * [启动HDFS]()
+         * [Hadoop Distributeed File System]()
+            * [官方介绍]()
+            * [HDFS的架构]()
+               * [NameNode]()
+               * [DataNode]()
+            * [<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html" rel="nofollow">Hadoop命令行操作</a>](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/FileSystemShell.html)
+         * [MapReduce]()
+            * [官网介绍]()
+            * [MapReduce执行流程图]()
+            * [核心概念]()
+               * [Split]()
+               * [InputFormat]()
+               * [OutputFormat]()
+               * [Mapper]()
+               * [Reducer]()
+               * [Combiner]()
+               * [Partitioner]()
+               * [Counters]()
+         * [Yarn]()
+            * [官网介绍]()
+            * [Yarn架构图]()
+            * [核心概念]()
+               * [ResourceManager and the NodeManager]()
+               * [ApplicationMaster]()
+      * [<a href="https://github.com/kangapp/hadoop/tree/master/HDFSApp">项目实战</a>]()
+
+
 ## 大数据概述
 
 ### 技术概念
